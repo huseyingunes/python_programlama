@@ -1,2 +1,2 @@
-# python_programlama
+# Python Programlama
 Python programlama dersi örneklerini içerir.
