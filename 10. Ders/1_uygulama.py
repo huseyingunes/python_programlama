@@ -51,12 +51,24 @@ def tiklandi():
     headers, data = scraper.get_data()
     tarih_verisi = []
     kapanis_degeri = []
-    for veri in data:
+    hareketli_ortalama = []
+    for i, veri in enumerate(data):
         tarih_verisi.append(veri[0])
         kapanis_degeri.append(veri[4])
+        if i > 4:
+            ortalama = kapanis_degeri[i] + kapanis_degeri[i-1]
+            ortalama += kapanis_degeri[i-2] + kapanis_degeri[i-3]
+            ortalama += kapanis_degeri[i-4]
+            hareketli_ortalama.append(ortalama / 5)
+    hareketli_ortalama.append(0)
+    hareketli_ortalama.append(0)
+    hareketli_ortalama.append(0)
+    hareketli_ortalama.append(0)
     tarih_verisi.reverse()
     kapanis_degeri.reverse()
+    hareketli_ortalama.reverse()
     plt.plot(tarih_verisi, kapanis_degeri)
+    plt.plot(hareketli_ortalama)
     plt.show()
     pass
 
