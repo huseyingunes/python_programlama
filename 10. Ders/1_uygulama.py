@@ -6,6 +6,8 @@ Grafik çizdirilecek
 """
 from tkinter import *
 from cryptocmd import CmcScraper
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 # Pencere oluşturma
@@ -47,8 +49,15 @@ def tiklandi():
                          tarih_baslangic,
                          tarih_bitis)
     headers, data = scraper.get_data()
-    print(headers)
-
+    tarih_verisi = []
+    kapanis_degeri = []
+    for veri in data:
+        tarih_verisi.append(veri[0])
+        kapanis_degeri.append(veri[4])
+    tarih_verisi.reverse()
+    kapanis_degeri.reverse()
+    plt.plot(tarih_verisi, kapanis_degeri)
+    plt.show()
     pass
 
 btn2 = Button(pencere, text="Grafik Çiz",
