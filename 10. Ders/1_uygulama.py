@@ -5,6 +5,7 @@ Paritenin mum tipi de seçilecek (1 dk, 5dk, 1saat vs.)
 Grafik çizdirilecek
 """
 from tkinter import *
+from cryptocmd import CmcScraper
 
 
 # Pencere oluşturma
@@ -25,19 +26,28 @@ tarih_bit = StringVar()
 lbl22 = Label(pencere, text="Başlangıç Tarihi")
 lbl22.grid(column=0, row=1)
 
-cal=DateEntry(pencere, selectmode='day', textvariable=tarih_bas)
+cal=DateEntry(pencere, selectmode='day',
+              textvariable=tarih_bas,
+              date_pattern='dd-mm-yyyy')
 cal.grid(row=1, column=1, padx=15)
 
 lbl33 = Label(pencere, text="Bitiş Tarihi")
 lbl33.grid(column=0, row=2)
 
-cal2=DateEntry(pencere, selectmode='day', textvariable=tarih_bit)
+cal2=DateEntry(pencere, selectmode='day',
+               textvariable=tarih_bit,
+               date_pattern='dd-mm-yyyy')
 cal2.grid(row=2, column=1, padx=15)
 
 def tiklandi():
     parite = variable.get()
     tarih_baslangic = tarih_bas.get()
     tarih_bitis = tarih_bit.get()
+    scraper = CmcScraper(parite,
+                         tarih_baslangic,
+                         tarih_bitis)
+    headers, data = scraper.get_data()
+    print(headers)
 
     pass
 
@@ -49,12 +59,12 @@ btn2 = Button(pencere, text="Grafik Çiz",
 btn2.grid(column=1, row=3)
 
 variable = StringVar(pencere)
-variable.set("BTCUSDT") # default value
+variable.set("BTC") # default value
 
 
 
 # Seçenek kutusu oluşturma
-secenekler = ["BTCUSDT", "ETHUSDT", "ADAUSDT"]
+secenekler = ["BTC", "ETH", "ADA"]
 secenek_kutusu = OptionMenu(pencere,
                             variable,
                             *secenekler)
