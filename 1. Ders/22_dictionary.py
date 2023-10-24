@@ -1,13 +1,16 @@
 sozluk = {
-  "marka": "Ford",
-  "model": "Mustang",
-  "yil": 1964
+    "marka": "Ford",
+    "model": "Mustang",
+    "yil": 1964,
+    "ozellik": {"renk": ["beyaz","mavi"],
+                "lastik": "17\""}
 }
 
 print(sozluk)
 print(sozluk["marka"])
 print(sozluk["model"])
 print(sozluk["yil"])
+print(sozluk["ozellik"])
 
 sozluk["renk"] = "siyah"
 print(sozluk)

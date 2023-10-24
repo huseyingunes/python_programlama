@@ -4,6 +4,7 @@
     göre sıralayan
     ve listeyi buna göre yazdıran programı yazınız.
 """
+
 liste = []
 for i in range(0, 5):
     liste.append(eval(input()))

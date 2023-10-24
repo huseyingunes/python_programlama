@@ -1,4 +1,4 @@
-a = "asd"
+a = "asdfghjkl"
 b = """adsf
 asdf
 adsf"""
@@ -10,3 +10,9 @@ print(b[5])
 
 print("a nın uzuluğu :", len(a))
 print("b nin uzuluğu :", len(b))
+
+print(a[2:4])
+print(a[2:])
+print(a[:3])
+print(a[-4:])
+print(a[2:6:2])

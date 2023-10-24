@@ -1,5 +1,5 @@
-a = 'İstanubl\'un tepeleri'
+a = 'İstanbul\'un tepeleri'
 print(a)
 
-a = 'İstanubl\\un tepeleri'
+a = 'İstanbul\\un tepeleri'
 print(a)
