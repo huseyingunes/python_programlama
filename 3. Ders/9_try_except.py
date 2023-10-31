@@ -1,5 +1,8 @@
 x = "asd"
+
 try:
     y = 5 + x
+except TypeError:
+    print("Tip Hatası : 'int' and 'str'")
 except:
-    print("'int' and 'str'")
+    print("Bilinmeyen Hata")

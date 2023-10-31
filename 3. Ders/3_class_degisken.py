@@ -3,6 +3,7 @@ class sinif:
     b = "ads"
     c = [1, 3, 5]
 
+
 nesne = sinif()
 print(nesne.a)
 nesne.a = 999

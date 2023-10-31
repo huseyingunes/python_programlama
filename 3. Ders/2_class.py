@@ -1,6 +1,7 @@
-class sinif:
+class Sinif:
     pass
 
-nesne = sinif()
+
+nesne = Sinif()
 
 print(type(nesne))

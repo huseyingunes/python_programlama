@@ -6,5 +6,7 @@ class sinif:
     def __del__(self):
         print("beni siliyorlar...")
 
+
 nesne = sinif("Metin")
 del nesne
+# Garbage Collector
