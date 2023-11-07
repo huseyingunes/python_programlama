@@ -3,6 +3,7 @@ import pandas as pd
 veri = pd.read_csv("iris.data")
 
 print(veri.head())
+print(veri.tail(2))
 
 print(veri.columns)
 

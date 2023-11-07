@@ -12,9 +12,63 @@
     grafiğini çizdirin (veriler sqlite tan çekilecek).
 """
 import os
+import csv
+from zipfile import ZipFile
+
+## - 1
+try:
+    os.mkdir("veri")
+except FileExistsError:
+    print("Veri klasörü zaten var...")
+
+## - 2
+with ZipFile("pariteler_cikti_1hour_2022_2022.zip",
+             'r') as zObject:
+    zObject.extractall(path="veri")
+
+## - 3
+baslik = ["otime", "open", "high", "low", "close"]
+tum_veriler = []
+csv_dosyalari = os.listdir('veri')
+for csv_dosyasi in csv_dosyalari:
+    with open("veri\\"+csv_dosyasi, newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            tum_veriler.append([row["otime"], row["open"],
+                               row["high"], row["low"],
+                                row["close"]])
+with open('veri/tum_veri.csv',
+          'w', encoding='UTF8', newline='') as f:
+    writer = csv.writer(f, delimiter=";")
+    writer.writerow(baslik)
+    writer.writerows(tum_veriler)
+
+
+
+
+
+
+
+''' 2022 cevabı
+import os
 import zipfile
 import pandas as pd
 import sqlite3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 bag = sqlite3.connect("kripto.vt")
 cursor = bag.cursor()
@@ -66,3 +120,4 @@ sonuc = cursor.fetchall()
 print(sonuc)
 
 bag.close()
+'''

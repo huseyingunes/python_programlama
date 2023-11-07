@@ -9,6 +9,8 @@ döndüren python fonksiyonunu yazınız.
     75577557
 """
 
+
+
 ## ÇÖZÜM 24.10.2023
 sayilar = [11, 20, 22, 10, 33]
 topla = 0
