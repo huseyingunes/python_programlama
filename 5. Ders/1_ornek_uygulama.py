@@ -14,12 +14,15 @@
 import os
 import csv
 from zipfile import ZipFile
+import sqlite3
 
 ## - 1
 try:
     os.mkdir("veri")
 except FileExistsError:
     print("Veri klasörü zaten var...")
+    if os.path.exists("veri/tum_veri.csv"):
+        os.remove("veri/tum_veri.csv")
 
 ## - 2
 with ZipFile("pariteler_cikti_1hour_2022_2022.zip",
@@ -27,27 +30,52 @@ with ZipFile("pariteler_cikti_1hour_2022_2022.zip",
     zObject.extractall(path="veri")
 
 ## - 3
-baslik = ["otime", "open", "high", "low", "close"]
+baslik = ["parite", "otime", "open", "high", "low", "close"]
 tum_veriler = []
 csv_dosyalari = os.listdir('veri')
 for csv_dosyasi in csv_dosyalari:
     with open("veri\\"+csv_dosyasi, newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            tum_veriler.append([row["otime"], row["open"],
+            tum_veriler.append(
+                [csv_dosyasi.split("_")[0], row["otime"], row["open"],
                                row["high"], row["low"],
-                                row["close"]])
+                                    row["close"]])
 with open('veri/tum_veri.csv',
           'w', encoding='UTF8', newline='') as f:
     writer = csv.writer(f, delimiter=";")
     writer.writerow(baslik)
     writer.writerows(tum_veriler)
 
+bag = sqlite3.connect("veri.vt")
+cursor = bag.cursor()
+
+cursor.execute("CREATE TABLE IF NOT EXISTS kripto "
+               "(id INTEGER NOT NULL PRIMARY KEY,"
+               "parite TEXT, "
+               "tarih_saat TEXT, "
+               "open REAL, "
+               "high REAL, "
+               "low REAL, "
+               "close REAL)") # Sorguyu çalıştırıyoruz.
+bag.commit()
+
+with open("veri\\tum_veri.csv", newline='') as csvfile:
+    reader = csv.DictReader(csvfile, delimiter=";")
+    for i, row in enumerate(reader):
+        cursor.execute("INSERT INTO kripto(id, parite, tarih_saat,"
+                       "open, high, low,close) VALUES("
+                       +str(i+2)+", '"
+                       +row["parite"]+"', '"
+                       +row['otime']+"', "
+                       +row['open']+", "
+                       +row['high']+", "
+                       +row['low']+", "
+                       +row['close']+")")
 
 
-
-
-
+bag.commit()
+bag.close()
 
 ''' 2022 cevabı
 import os
