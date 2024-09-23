@@ -8,6 +8,11 @@ Find the largest palindrome made from the product of two
 numbers.
 '''
 
+
+
+
+
+
 palindrom_mu = lambda sayi: True if str(sayi) == str(sayi)[::-1] else False
 en_buyuk_palindrom = 0
 for i in range(100, 1000):

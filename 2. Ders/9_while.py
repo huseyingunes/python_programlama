@@ -7,4 +7,4 @@ while a < 10:
         break
     print(a)
 else:
-    print("a artık 15 ya da daha büyük")
+    print("a artık 10 ya da daha büyük")

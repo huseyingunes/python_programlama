@@ -3,16 +3,5 @@
     bunların karelerinden 20 çıktığında ortaya çıkan sonuca
     göre sıralayan
     ve listeyi buna göre yazdıran programı yazınız.
+    a = eval(input())
 """
-
-liste = []
-for i in range(0, 5):
-    liste.append(eval(input()))
-
-
-def siralama_fonksiyonu(a):
-    return a * a - 20
-
-
-liste.sort(key=siralama_fonksiyonu)
-print(liste)
