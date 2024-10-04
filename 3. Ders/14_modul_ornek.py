@@ -5,6 +5,7 @@ Bu modülün içinde faktöriyel alma, karekök alma
 Bu modülü bu dosyaya mat olarak import edin.
 Bu modülün fonksiyonlarını kullanın.
 '''
+import math
 
 
 

@@ -3,9 +3,9 @@ class sinif:
     b = "ads"
     c = [1, 3, 5]
 
-    def yazdir(self):
+    def yazdir(aa):
         d = 100
-        print(d, self.a)
+        print(d, aa.a)
 
     def yazdir2(self, t):
         self.yazdir()
