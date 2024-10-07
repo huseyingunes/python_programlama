@@ -1,8 +1,17 @@
 '''
-ADAUST dosyasını csv olarak okuyunuz
+ADAUSDT dosyasını csv olarak okuyunuz
 Tarih alanını ve ondalıklı birimleri Türkçe'ye uygun
     hale getiriniz. Ayraç olarak ta ; kullanınız.
 '''
+
+
+
+
+
+
+
+
+
 
 import csv
 from datetime import datetime

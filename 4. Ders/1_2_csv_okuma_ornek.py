@@ -15,6 +15,10 @@ Mayıs ayının açılış ortalamasını hesaplayınız...
 
 
 
+
+
+
+
 import csv
 
 with open('ADAUSDT_mum_1_yil_1_saatlik.csv', newline='') as csvfile:
