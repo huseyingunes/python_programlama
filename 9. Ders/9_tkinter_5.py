@@ -31,7 +31,7 @@ txt = Entry(window, width=10)
 txt.grid(column=0, row=1)
 
 txt2 = Entry(window, width=10, font=("Courier New", 20))
-txt2.grid(column=0, row=1)
+txt2.grid(column=0, row=2)
 
 window.mainloop()
 

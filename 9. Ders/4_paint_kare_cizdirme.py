@@ -1,6 +1,6 @@
 import pyautogui
 
-pyautogui.moveTo(100, 250, duration=2,
+pyautogui.moveTo(700, 350, duration=2,
                  tween=pyautogui.easeInOutQuad)
 
 distance = 200

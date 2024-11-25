@@ -16,7 +16,7 @@ def getir():
     cursor.execute(sorgu)
     sonuc = cursor.fetchall()
     bag.close()
-    return sonuc
+    return jsonify(sonuc)
 
 @app.route("/saglam_getir/<parite>/<tarih1>/<tarih2>")
 def saglam_getir(parite, tarih1, tarih2):

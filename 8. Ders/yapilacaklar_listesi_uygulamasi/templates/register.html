@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.20.0/dist/full.css" rel="stylesheet">
+</head>
+<body>
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="card w-96 bg-base-100 shadow-xl p-6">
+            <h2 class="text-2xl mb-6">Kayıt Ol</h2>
+            <form method="POST">
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-bold mb-2">Ad</label>
+                    <input type="text" id="name" name="name" class="input input-bordered w-full" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-bold mb-2">E-posta</label>
+                    <input type="email" id="email" name="email" class="input input-bordered w-full" required>
+                </div>
+                <div class="mb-4">
+                    <label for="username" class="block text-sm font-bold mb-2">Kullanıcı Adı</label>
+                    <input type="text" id="username" name="username" class="input input-bordered w-full" required>
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-sm font-bold mb-2">Şifre</label>
+                    <input type="password" id="password" name="password" class="input input-bordered w-full" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">Kayıt Ol</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

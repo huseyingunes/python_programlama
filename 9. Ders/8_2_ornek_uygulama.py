@@ -1,14 +1,14 @@
 """
 Bir tkinkter penceresi oluşturun
 Pencere başlığı Tıklayamazsın olsun.
-Bu penzerenin üst orta kısmına Merhaba GUI yazdırın
+Bu pencerenin üst orta kısmına Merhaba GUI yazdırın
 Altına bir tane düğme ekleyin
 Düğme de kapat yazsın.
 Düğmenin üstüne gelinmesini pyautogui ile engelleyin.
     Tam üstüne gelinirken ekranda düğmenin olmadığı
     bir noktaya fareyi ışınlayın
-Düğmenin altına bir lable daha ekleyin.
-    Kişi her düğmeye yaklaşığ uzaklaştırıldığında
+Düğmenin altına bir label daha ekleyin.
+    Kişi her düğmeye yaklaştıp uzaklaştırıldığında
         Beceriksiz yazdırın...
 """
 

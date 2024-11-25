@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yapılacaklar Listesi</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.20.0/dist/full.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+    <style>
+        .logout-button {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+        }
+        .edit-profile-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex items-center justify-center">
+        <div class="card w-full max-w-4xl bg-base-100 shadow-xl p-6">
+            <h2 class="text-2xl mb-6">Yapılacaklar Listesi</h2>
+            <form method="POST">
+                <div class="mb-4">
+                    <label for="task" class="block text-sm font-bold mb-2">Yeni Görev</label>
+                    <input type="text" id="task" name="task" class="input input-bordered w-full" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-full">Ekle</button>
+            </form>
+            <div class="flex mt-6">
+                <div class="w-1/2 pr-2">
+                    <h3 class="text-xl mb-4">Yapılacaklar</h3>
+                    <table class="table w-full">
+                        <thead>
+                            <tr>
+                                <th>Görev</th>
+                                <th>Durum</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="todo-list">
+                            {% for task in tasks if not task.completed %}
+                                <tr data-id="{{ task._id }}">
+                                    <td>{{ task.task }}</td>
+                                    <td>
+                                        <form method="POST" action="{{ url_for('complete_task', task_id=task._id) }}" class="inline">
+                                            <input type="checkbox" name="completed" class="checkbox checkbox-primary" onchange="this.form.submit()">
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form method="POST" action="{{ url_for('edit_task', task_id=task._id) }}" class="inline">
+                                            <input type="text" name="new_task" class="input input-bordered input-xs" required>
+                                            <button type="submit" class="btn btn-warning btn-xs">Düzenle</button>
+                                        </form>
+                                        <form method="POST" action="{{ url_for('delete_task', task_id=task._id) }}" class="inline">
+                                            <button type="submit" class="btn btn-error btn-xs">Sil</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="w-1/2 pl-2">
+                    <h3 class="text-xl mb-4">Tamamlananlar</h3>
+                    <table class="table w-full">
+                        <thead>
+                            <tr>
+                                <th>Görev</th>
+                                <th>Durum</th>
+                                <th>İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody id="completed-list">
+                            {% for task in tasks if task.completed %}
+                                <tr data-id="{{ task._id }}">
+                                    <td class="line-through">{{ task.task }}</td>
+                                    <td>
+                                        <form method="POST" action="{{ url_for('complete_task', task_id=task._id) }}" class="inline">
+                                            <input type="checkbox" name="completed" class="checkbox checkbox-primary" onchange="this.form.submit()" checked>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <form method="POST" action="{{ url_for('edit_task', task_id=task._id) }}" class="inline">
+                                            <input type="text" name="new_task" class="input input-bordered input-xs" required>
+                                            <button type="submit" class="btn btn-warning btn-xs">Düzenle</button>
+                                        </form>
+                                        <form method="POST" action="{{ url_for('delete_task', task_id=task._id) }}" class="inline">
+                                            <button type="submit" class="btn btn-error btn-xs">Sil</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="{{ url_for('logout') }}" class="btn btn-secondary logout-button">Çıkış Yap</a>
+    <a href="{{ url_for('edit_profile') }}" class="btn btn-secondary edit-profile-button">Profili Düzenle</a>
+    <script>
+        new Sortable(document.getElementById('todo-list'), {
+            animation: 150,
+            onEnd: function (evt) {
+                let order = [];
+                document.querySelectorAll('#todo-list tr').forEach((row, index) => {
+                    order.push({ id: row.dataset.id, position: index });
+                });
+                fetch('{{ url_for("update_task_order") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ order: order })
+                });
+            }
+        });
+
+        new Sortable(document.getElementById('completed-list'), {
+            animation: 150,
+            onEnd: function (evt) {
+                let order = [];
+                document.querySelectorAll('#completed-list tr').forEach((row, index) => {
+                    order.push({ id: row.dataset.id, position: index });
+                });
+                fetch('{{ url_for("update_task_order") }}', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ order: order })
+                });
+            }
+        });
+    </script>
+</body>
+</html>
