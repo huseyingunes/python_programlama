@@ -1,3 +1,6 @@
+
+
+
 lambda_fonksiyonu = lambda a: a + 10
 
 def fonksiyon(a):

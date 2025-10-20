@@ -4,4 +4,5 @@ class Sinif:
 
 nesne = Sinif()
 
+print(type(Sinif))
 print(type(nesne))

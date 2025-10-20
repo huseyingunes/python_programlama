@@ -1,3 +1,5 @@
+
+
 def topla_carp(a, b):
     return a + b, a * b
 

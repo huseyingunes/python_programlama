@@ -5,6 +5,7 @@ O ana kadar girilen sayıların çarpımlarının yarısını bu sayı ile böle
 Çıkan sonucu ekrana yazdıracak programı yazınız.
 """
 
+
 sayilar = []
 sayi = None
 while True:

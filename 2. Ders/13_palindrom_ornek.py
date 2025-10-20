@@ -1,4 +1,5 @@
 """
+
 Kullanıcıdan bir sayı girmesini isteyiniz
 Bu sayının palindrom olup olmadığını ekrana yazdırınız
 for, enumerate ve else kullanınız

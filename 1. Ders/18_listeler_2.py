@@ -1,4 +1,4 @@
-a = [1, 6]
+a=[1,6]
 a.append(5)
 a.append([1, "sdf"])
 print(a)

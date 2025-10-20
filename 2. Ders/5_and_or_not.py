@@ -7,3 +7,6 @@ if a < 10 or c < 10:
 
 if a == 5 and c == 10:
     print("a 5 e eşit ve c 10 a eşit")
+
+if not a == 6:
+    print("a 6 ya eşit değil")

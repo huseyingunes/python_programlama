@@ -5,3 +5,21 @@
     ve listeyi buna göre yazdıran programı yazınız.
     a = eval(input())
 """
+dizi = []
+a = eval(input())
+dizi.append(a)
+b= eval(input())
+dizi.append(b)
+c = eval(input())
+dizi.append(c)
+d = eval(input())
+dizi.append(d)
+e = eval(input())
+dizi.append(e)
+
+def sirala(n):
+    return n**2 - 20
+
+dizi.sort(key=sirala)
+
+print(dizi)
